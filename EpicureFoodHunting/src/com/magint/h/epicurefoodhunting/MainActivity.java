@@ -125,7 +125,16 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            if(position == 0)
+            	return Fragment_issues.newInstance(position+1);
+            else if (position == 1)
+            	return Fragment_gallery.newInstance(position+1);
+            else if (position == 2)
+            	return Fragment_hunt.newInstance(position+1);
+            else if (position == 3)
+            	return Fragment_recipes.newInstance(position+1);            
+            else
+                return Fragment_more.newInstance(position+1);
         }
 
         @Override
@@ -145,18 +154,18 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
                 case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
                 case 3:
-                    return getString(R.string.title_section2).toUpperCase(l);
+                    return getString(R.string.title_section4).toUpperCase(l);
                 case 4:
-                    return getString(R.string.title_section3).toUpperCase(l);
+                    return getString(R.string.title_section5).toUpperCase(l);
             }
             return null;
         }
     }
 
     /**
-     * A placeholder fragment containing a simple view.
+     *  issues fragment.
      */
-    public static class PlaceholderFragment extends Fragment {
+    public static class Fragment_issues extends Fragment {
         /**
          * The fragment argument representing the section number for this
          * fragment.
@@ -167,17 +176,19 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
+        public static Fragment_issues newInstance(int sectionNumber) {
+            Fragment_issues fragment = new Fragment_issues();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             fragment.setArguments(args);
             return fragment;
         }
 
-        public PlaceholderFragment() {
+        public Fragment_issues() {
         }
-
+        
+        
+        
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
@@ -185,5 +196,150 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
             return rootView;
         }
     }
+        
+        
+
+        /**
+         *  gallery fragment.
+         */
+    public static class Fragment_gallery extends Fragment {
+            /**
+             * The fragment argument representing the section number for this
+             * fragment.
+             */
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+            /**
+             * Returns a new instance of this fragment for the given section
+             * number.
+             */
+         public static Fragment_gallery newInstance(int sectionNumber) {
+                Fragment_gallery fragment = new Fragment_gallery();
+                Bundle args = new Bundle();
+                args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+                fragment.setArguments(args);
+                return fragment;
+            }
+
+         public Fragment_gallery() {
+            }
+         
+         
+         
+         @Override
+         public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                 Bundle savedInstanceState) {
+             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+             return rootView;
+         }
+     }
+         
+      
+         /**
+          *  hunt fragment.
+          */
+     public static class Fragment_hunt extends Fragment {
+             /**
+              * The fragment argument representing the section number for this
+              * fragment.
+              */
+         private static final String ARG_SECTION_NUMBER = "section_number";
+
+             /**
+              * Returns a new instance of this fragment for the given section
+              * number.
+              */
+          public static Fragment_hunt newInstance(int sectionNumber) {
+                 Fragment_hunt fragment = new Fragment_hunt();
+                 Bundle args = new Bundle();
+                 args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+                 fragment.setArguments(args);
+                 return fragment;
+             }
+
+          public Fragment_hunt() {
+             }       
+        
+          
+          @Override
+          public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                  Bundle savedInstanceState) {
+              View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+              return rootView;
+          }
+      }
+        
+  
+     /**
+      *  recipes fragment.
+      */
+ public static class Fragment_recipes extends Fragment {
+         /**
+          * The fragment argument representing the section number for this
+          * fragment.
+          */
+     private static final String ARG_SECTION_NUMBER = "section_number";
+
+         /**
+          * Returns a new instance of this fragment for the given section
+          * number.
+          */
+      public static Fragment_recipes newInstance(int sectionNumber) {
+             Fragment_recipes fragment = new Fragment_recipes();
+             Bundle args = new Bundle();
+             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+             fragment.setArguments(args);
+             return fragment;
+         }
+
+      public Fragment_recipes() {
+         }       
+    
+      
+      @Override
+      public View onCreateView(LayoutInflater inflater, ViewGroup container,
+              Bundle savedInstanceState) {
+          View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+          return rootView;
+      }
+  }
+     
+  
+ 
+ /**
+  *  recipes more.
+  */
+public static class Fragment_more extends Fragment {
+     /**
+      * The fragment argument representing the section number for this
+      * fragment.
+      */
+ private static final String ARG_SECTION_NUMBER = "section_number";
+
+     /**
+      * Returns a new instance of this fragment for the given section
+      * number.
+      */
+  public static Fragment_more newInstance(int sectionNumber) {
+         Fragment_more fragment = new Fragment_more();
+         Bundle args = new Bundle();
+         args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+         fragment.setArguments(args);
+         return fragment;
+     }
+
+  public Fragment_more() {
+     }       
+
+  
+  @Override
+  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+          Bundle savedInstanceState) {
+      View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+      return rootView;
+  }
+}
+        
+    
 
 }
