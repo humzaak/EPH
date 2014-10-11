@@ -1,5 +1,10 @@
 package com.magint.h.epicurefoodhunting;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -7,15 +12,22 @@ import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 
@@ -40,6 +52,9 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        
+        
+
 
         // Set up the action bar.
         final ActionBar actionBar = getActionBar();
@@ -188,16 +203,72 @@ public class MainActivity extends Activity implements ActionBar.TabListener {
         }
         
         
+        public Bitmap generateBitmap(String url){
+            Bitmap bitmap_picture = null;
+
+           
+
+            int intentos = 0;
+            boolean exception = true;
+            while((exception) && (intentos < 3)){
+                try {
+                    URL imageURL = new URL(url);
+                    HttpURLConnection conn = (HttpURLConnection) imageURL.openConnection();
+                    conn.connect();
+                    InputStream bitIs = conn.getInputStream();
+                    if(bitIs != null){
+                        bitmap_picture = BitmapFactory.decodeStream(bitIs);
+                        exception = false;
+                    }else{
+                        Log.e("InputStream", "null");
+                    }
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    exception = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    exception = true;
+                }
+                intentos++;
+            }
+
+            return bitmap_picture;
+        }
         
-        @Override
+        
+        @SuppressWarnings("deprecation")
+		@Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+            
+            
+            Button issues_btn;
+            issues_btn = (Button) rootView.findViewById(R.id.button1);
+            
+            Bitmap issues_image;
+            issues_image = generateBitmap("http://www.epicureasia.com/img/covers/1014.jpg");
+            
+			BitmapDrawable bitmapDrawable = new BitmapDrawable(null,issues_image);//(BitmapDrawable)issues_image;
+            Drawable issues_image_drawable = (Drawable)bitmapDrawable;
+            
+            issues_btn.setBackgroundDrawable(issues_image_drawable);
+            
+            
+            
+            
             return rootView;
         }
     }
         
         
+    
+
+    
+    
 
         /**
          *  gallery fragment.
