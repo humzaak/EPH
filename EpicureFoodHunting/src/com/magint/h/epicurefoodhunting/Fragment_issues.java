@@ -92,8 +92,8 @@ public class Fragment_issues extends Fragment {
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+      //  StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+      //  StrictMode.setThreadPolicy(policy);
         
         
         Calendar c = Calendar.getInstance();
@@ -111,7 +111,7 @@ public class Fragment_issues extends Fragment {
         
         
         DownloadThumbnailTask task_thumb = new DownloadThumbnailTask();
-        task_thumb.execute(new String[] { "http://www.epicureasia.com/img/covers/"+String.valueOf(month+1)+String.valueOf(splityear)+".jpg" });     
+        task_thumb.execute(new String[] { "http://www.epicureasia.com/img/covers/" +String.valueOf(month+1)+String.valueOf(splityear)+".jpg" });     
          
        try {
     	   issues_image =  task_thumb.get();
