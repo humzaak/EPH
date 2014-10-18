@@ -3,13 +3,18 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
+    android:background="#000000"	        
+    
      >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:text="TextView" />
+        android:text="Recipe Title" 
+        android:textColor="#FFFFFF"	    
+        android:background="#000000"    
+        />
 
     <ImageView
         android:id="@+id/imageView1"
@@ -17,13 +22,18 @@
         android:layout_height="200dp"
         android:src="@drawable/ic_launcher" 
         android:scaleType="centerInside"
-		android:gravity="center"/>
+		android:gravity="center"
+		/>
 
       <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:text="TextView" />
+        android:text="Recipe Description" 
+        android:textColor="#FFFFFF"	 
+        android:background="#000000"
+               
+        />
 
      
 
