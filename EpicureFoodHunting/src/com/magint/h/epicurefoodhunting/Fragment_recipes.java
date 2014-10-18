@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,21 +27,21 @@ public class Fragment_recipes extends Fragment {
     
 	
 	// Array of strings storing country names
-    String[] countries = new String[] {
-            "India",
-            "Pakistan",
-            "Sri Lanka",
-            "China",
-            "Bangladesh",
-            "Nepal",
-            "Afghanistan",
-            "North Korea",
-            "South Korea",
-            "Japan"
+    String[] recipeT = new String[] {
+            "Recipe 1",
+            "Recipe 2",
+            "Recipe 3",
+            "Recipe 4",
+            "Recipe 5",
+            "Recipe 6",
+            "Recipe 7",
+            "Recipe 8",
+            "Recipe 9",
+            "Recipe 10"
     };
     
     // Array of integers points to images stored in /res/drawable-ldpi/
-    int[] flags = new int[]{
+    int[] recipeI = new int[]{
     		R.drawable.ic_launcher,
     		R.drawable.ic_launcher,
     		R.drawable.ic_launcher,
@@ -54,17 +55,17 @@ public class Fragment_recipes extends Fragment {
     };
 	
     // Array of strings to store currencies
-    String[] currency = new String[]{
-    	"Indian Rupee",
-    	"Pakistani Rupee",
-    	"Sri Lankan Rupee",
-    	"Renminbi",
-    	"Bangladeshi Taka",
-    	"Nepalese Rupee",
-    	"Afghani",
-    	"North Korean Won",
-    	"South Korean Won",
-    	"Japanese Yen"
+    String[] recipeD = new String[]{
+    	"Recipe 1 details",
+    	"Recipe 2 details",
+    	"Recipe 3 details",
+    	"Recipe 4 details",
+    	"Recipe 5 details",
+    	"Recipe 6 details",
+    	"Recipe 7 details",
+    	"Recipe 8 details",
+    	"Recipe 9 details",
+    	"Recipe 10 details"
     };
     
 	
@@ -103,17 +104,6 @@ private static final String ARG_SECTION_NUMBER = "section_number";
      
      ListView listView = (ListView) rootView.findViewById(R.id.recipelist);
 
-     /*
-     String[] values = new String[] { "Android List View", 
-             "Adapter implementation",
-             "Simple List View In Android",
-             "Create List View Android", 
-             "Android Example", 
-             "List View Source Code", 
-             "List View Array Adapter", 
-             "Android Example List View" 
-            };
-     */
      
 
      // Each row in the list stores country name, currency and flag
@@ -121,9 +111,9 @@ private static final String ARG_SECTION_NUMBER = "section_number";
      
      for(int i=0;i<10;i++){
      	HashMap<String, String> hm = new HashMap<String,String>();
-         hm.put("rt", "Country : " + countries[i]);
-         hm.put("rd","Currency : " + currency[i]);
-         hm.put("ri", Integer.toString(flags[i]) );            
+         hm.put("rt",  recipeT[i]);
+         hm.put("rd", recipeD[i]);
+         hm.put("ri", Integer.toString(recipeI[i]) );            
          aList.add(hm);        
      }
      
@@ -143,7 +133,11 @@ private static final String ARG_SECTION_NUMBER = "section_number";
      {
          @Override public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
          { 
-             Toast.makeText(getActivity().getApplicationContext(), "Stop Clicking me", Toast.LENGTH_SHORT).show();
+             //Toast.makeText(getActivity().getApplicationContext(), "Stop Clicking me", Toast.LENGTH_SHORT).show();
+             
+             Intent intent = new Intent(getActivity(), Fragment_recipes_details.class);
+             startActivity(intent); 
+
              
          }
      });

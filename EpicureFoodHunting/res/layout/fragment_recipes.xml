@@ -6,7 +6,9 @@
          <ListView
               android:id="@+id/recipelist"
               android:layout_height="wrap_content"
-              android:layout_width="match_parent">         
+              android:layout_width="match_parent"
+              android:background="#000000"
+              >         
          </ListView>
  
 </LinearLayout>
