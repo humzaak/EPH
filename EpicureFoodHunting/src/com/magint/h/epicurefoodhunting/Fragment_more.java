@@ -39,7 +39,7 @@ private static final String ARG_SECTION_NUMBER = "section_number";
  @Override
  public View onCreateView(LayoutInflater inflater, ViewGroup container,
          Bundle savedInstanceState) {
-     View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+     View rootView = inflater.inflate(R.layout.fragment_more, container, false);
      
      return rootView;
  }

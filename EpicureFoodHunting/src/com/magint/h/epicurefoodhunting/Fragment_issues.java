@@ -10,10 +10,12 @@ import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -126,6 +128,37 @@ public class Fragment_issues extends Fragment {
        			e.printStackTrace();
        		}
 
+       final Button button = (Button) rootView.findViewById(R.id.button1);
+       button.setOnClickListener(new View.OnClickListener() {
+           public void onClick(View v) {
+        	   String url = getString(R.string.epicureurl);
+        	   Intent i = new Intent(Intent.ACTION_VIEW);
+        	   i.setData(Uri.parse(url));
+        	   startActivity(i);
+           }
+       });
+       
+       final Button button2 = (Button) rootView.findViewById(R.id.button2);
+       button2.setOnClickListener(new View.OnClickListener() {
+           public void onClick(View v) {
+        	   String url = getString(R.string.epicureurl);
+        	   Intent i = new Intent(Intent.ACTION_VIEW);
+        	   i.setData(Uri.parse(url));
+        	   startActivity(i);
+           }
+       });
+       
+       final Button button3 = (Button) rootView.findViewById(R.id.button3);
+       button3.setOnClickListener(new View.OnClickListener() {
+           public void onClick(View v) {
+        	   String url = getString(R.string.epicureurl);
+        	   Intent i = new Intent(Intent.ACTION_VIEW);
+        	   i.setData(Uri.parse(url));
+        	   startActivity(i);
+           }
+       });
+       
+       
         Button issues_btn2;
         issues_btn2 = (Button) rootView.findViewById(R.id.button2);
         
