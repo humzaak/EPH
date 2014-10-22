@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 
 import com.koushikdutta.urlimageviewhelper.UrlImageViewCallback;
 import com.koushikdutta.urlimageviewhelper.UrlImageViewHelper;
-import com.magint.h.epicurefoodhunting.soap.SoapHandler;
+import com.magint.h.epicurefoodhunting.soap.SoapFactory;
 
 
 import android.app.Activity;
@@ -170,8 +170,8 @@ private static final String ARG_SECTION_NUMBER = "section_number";
 		@Override
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
-		SoapHandler _soapHandler= new SoapHandler();
-	     Document doc= _soapHandler.soap();	       
+		
+	     Document doc= SoapFactory.getRecipeResponseDocument(getActivity().getApplicationContext());	       
 	       Elements _elementsRecipieThumbs=doc.getElementsByTag("thumb");
 	        Elements _elementsRecipieTitle=doc.getElementsByTag("title");
 	        Elements _elementsRecipieIntroText=doc.getElementsByTag("intro_text");
