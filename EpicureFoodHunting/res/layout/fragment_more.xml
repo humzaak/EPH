@@ -23,10 +23,23 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="#FFFFFF" />
 
-    <TextView
-        android:id="@+id/textView3"
+      <TextView
+        android:id="@+id/welcometextView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:gravity="center_horizontal" 
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
+    
+    <TextView
+        android:id="@+id/usernametextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:gravity="center_horizontal" 
+        android:minHeight="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"/>
 
     <Button
         android:id="@+id/loginbutton"
