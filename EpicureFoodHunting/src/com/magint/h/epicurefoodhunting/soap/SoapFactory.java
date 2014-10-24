@@ -47,7 +47,7 @@ public class SoapFactory {
 	static final String NAMESPACE = " http://epicureasia.com/webservice";
 	
 		
-	public static Document getRecipeResponseDocument(Context ApplicationContext) {
+	public static Document getRecipeListDocuemnt(Context ApplicationContext) {
 		 try {
 	           
 			  SoapObject request = new SoapObject(NAMESPACE, RECIPE_METHOD_NAME);

@@ -2,6 +2,7 @@ package com.magint.h.epicurefoodhunting;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 import org.jsoup.nodes.Document;
@@ -83,7 +84,6 @@ class RecipieListAdaptor extends BaseAdapter
 	        txtTitle.setText(navDrawerItems.get(position).getTitle());
 	        txtCount.setText(navDrawerItems.get(position).getIntroText());
 	        imgIcon.setAnimation(null);
-	        // yep, that's it. it handles the downloading and showing an interstitial image automagically.
 	        UrlImageViewHelper.setUrlDrawable(imgIcon, navDrawerItems.get(position).getImgURL(), R.drawable.loading, new UrlImageViewCallback() {
 	            @Override
 	            public void onLoaded(ImageView imageView, Bitmap loadedBitmap, String url, boolean loadedFromCache) {
@@ -114,6 +114,7 @@ public class Fragment_recipes extends Fragment {
      * fragment.
      */
 private static final String ARG_SECTION_NUMBER = "section_number";
+List<String> RecipeIDList= new ArrayList<String>();
 
     /**
      * Returns a new instance of this fragment for the given section
@@ -147,9 +148,8 @@ private static final String ARG_SECTION_NUMBER = "section_number";
      {
          @Override public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
          { 
-             //Toast.makeText(getActivity().getApplicationContext(), "Stop Clicking me", Toast.LENGTH_SHORT).show();
-             
              Intent intent = new Intent(getActivity(), Fragment_recipes_details.class);
+             intent.putExtra("recipeID", RecipeIDList.get(position));
              startActivity(intent); 
 
              
@@ -164,6 +164,8 @@ private static final String ARG_SECTION_NUMBER = "section_number";
      return rootView;
  }
  
+
+ 
  public class SoapAsync extends AsyncTask<String, String, String>
  {
 
@@ -171,13 +173,15 @@ private static final String ARG_SECTION_NUMBER = "section_number";
 		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
 		
-	     Document doc= SoapFactory.getRecipeResponseDocument(getActivity().getApplicationContext());	       
+	     Document doc= SoapFactory.getRecipeListDocuemnt(getActivity().getApplicationContext());	       
 	       Elements _elementsRecipieThumbs=doc.getElementsByTag("thumb");
 	        Elements _elementsRecipieTitle=doc.getElementsByTag("title");
 	        Elements _elementsRecipieIntroText=doc.getElementsByTag("intro_text");
+	        Elements _elementsRecipieID=doc.getElementsByTag("id");
 	        for(int i=0; i< Math.min(Math.min(_elementsRecipieThumbs.size(),_elementsRecipieTitle.size()),_elementsRecipieIntroText.size()); i++)
 	        {
 	        	RecipeListItems.add(new RecipeListItem(_elementsRecipieTitle.get(i).text(), _elementsRecipieIntroText.get(i).text(),"http://epicureasia.com/app/webroot/img/recipes/"+ _elementsRecipieThumbs.get(i).text()));
+	        	RecipeIDList.add(_elementsRecipieID.get(i).text());
 	        }
 			return null;
 		}
